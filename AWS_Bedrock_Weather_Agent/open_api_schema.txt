@@ -1,0 +1,56 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Weather API",
+    "version": "1.0.0",
+    "description": "API for getting weather forecasts for US cities"
+  },
+  "paths": {
+    "/weather": {
+      "get": {
+        "summary": "Get weather forecast",
+        "description": "Get weather forecast for a US city. Use when user asks about weather, temperature, or conditions.",
+        "operationId": "getWeather",
+        "parameters": [
+          {
+            "name": "city",
+            "in": "query",
+            "description": "US city name (e.g. 'Seattle', 'New York')",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mode",
+            "in": "query",
+            "description": "Forecast type: 'hourly' or 'daily'",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": ["hourly", "daily"],
+              "default": "hourly"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Weather forecast",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "weather_report": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
